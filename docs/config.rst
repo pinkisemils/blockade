@@ -28,6 +28,7 @@ is used to describe the containers in your application. Here is an example:
         image: my_docker_image
         command: /bin/myapp
         links: {c1: master}
+        memory: 100m
 
     network:
       flaky: 30%
@@ -125,6 +126,15 @@ launch.
 ``cap_add``
 ---------
 ``cap_add`` is optional and specifies additional root `capabilities`_
+
+
+``memory``
+---------
+``memory`` is optional and specifies the maximum memory limit, mirrors the
+``--memory`` `option <https://docs.docker.com/engine/admin/resource_constraints/#memory>`_
+in ``docker run``.
+If the limit is hit, the container will be shut down.
+
 
 ``container_name``
 ------------------
