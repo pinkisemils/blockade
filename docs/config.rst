@@ -131,9 +131,11 @@ launch.
 ``memory``
 ---------
 ``memory`` is optional and specifies the maximum memory limit, mirrors the
-``--memory`` `option <https://docs.docker.com/engine/admin/resource_constraints/#memory>`_
-in ``docker run``.
-If the limit is hit, the container will be shut down.
+``--memory`` `option
+<https://docs.docker.com/engine/admin/resource_constraints/#memory>`_ in
+``docker run``.  If the limit is hit, the container will be shut down. The
+minimum memory amount allowed is 4 megabytes.
+
 
 
 ``container_name``
