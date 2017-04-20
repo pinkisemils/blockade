@@ -60,7 +60,8 @@ class BlockadeContainerConfig(object):
                 neutral=values.get('neutral', False),
                 holy=values.get('holy', False),
                 container_name=with_index(values.get('container_name'), idx),
-                cap_add=values.get('cap_add'))
+                cap_add=values.get('cap_add'),
+                memory_limit=values.get('memory'))
 
         if count == 1:
             yield get_instance(name)
@@ -72,7 +73,7 @@ class BlockadeContainerConfig(object):
     def __init__(self, name, image, command=None, links=None, volumes=None,
                  publish_ports=None, expose_ports=None, environment=None,
                  hostname=None, dns=None, start_delay=0, neutral=False,
-                 holy=False, container_name=None, cap_add=None):
+                 holy=False, container_name=None, cap_add=None, memory_limit=None):
         self.name = name
         self.hostname = hostname
         self.dns = dns
@@ -85,6 +86,7 @@ class BlockadeContainerConfig(object):
         self.holy = holy
         self.container_name = container_name
         self.cap_add = cap_add
+        self.memory_limit = memory_limit
 
         if neutral and holy:
             raise BlockadeConfigError("container must not be 'neutral' and 'holy' at the same time")

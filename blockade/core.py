@@ -140,6 +140,10 @@ class Blockade(object):
         else:
             network_mode = None
 
+        # set the limit to something fairly future-proof if no
+        # arbitrary limit is set
+        mem_limit = container.memory_limit or '1024g'
+
         host_config = self.docker_client.create_host_config(
             binds=container.volumes,
             dns=container.dns,
@@ -147,6 +151,7 @@ class Blockade(object):
             network_mode=network_mode,
             ulimits=[{'name': 'core', 'soft': 3145728, 'hard': 4194304}],
             links=links,
+            mem_limit=mem_limit,
             cap_add=container.cap_add)
 
         def create_container():
